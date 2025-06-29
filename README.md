@@ -20,6 +20,7 @@ The course is divided into the following modules:
 In this module, you will learn:
 
 * **What is ETL?**
+  
   ETL stands for **Extract, Transform, Load**—a process of extracting data from different sources, processing it, and loading it into data warehouses.
 
   **Example:**
