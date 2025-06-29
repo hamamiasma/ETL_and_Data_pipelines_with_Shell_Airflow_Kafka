@@ -48,7 +48,7 @@ Staging Areas act as temporary storage zones where raw data is held before trans
 
 # ETL as DAGs (Directed Acyclic Graphs)
 
-## 📌 What is a DAG?
+##  What is a DAG?
 
 A **DAG (Directed Acyclic Graph)** is a data structure composed of **nodes (tasks)** and **directed edges (dependencies)** — with **no loops or cycles**.
 
@@ -58,7 +58,7 @@ A **DAG (Directed Acyclic Graph)** is a data structure composed of **nodes (task
 
 ---
 
-## 🧩 Why Represent ETL as a DAG?
+##  Why Represent ETL as a DAG?
 
 ETL (Extract, Transform, Load) processes often consist of many sequential steps with dependencies.  
 Using a DAG to represent an ETL pipeline helps make the process:
