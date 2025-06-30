@@ -118,7 +118,7 @@ Additionally, ensure you have:
    fi
    ```
 
-   * Checks if the CSV file is empty or invalid.
+   * ! -s : Checks if the CSV file is empty or invalid.
    * If it is, the script exits with an error message.
 
 4. **Data Loading:**
