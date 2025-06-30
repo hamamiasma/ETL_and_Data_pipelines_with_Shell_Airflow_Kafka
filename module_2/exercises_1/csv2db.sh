@@ -24,5 +24,5 @@ fi
 # Daten in PostgreSQL laden
 echo "Daten werden in PostgreSQL geladen..."
 export PGPASSWORD='dein_passwort'
-echo "\c template1; \\COPY users FROM '$(pwd)/transformed-data.csv' DELIMITERS ',' CSV;" | psql --username=asmaahamami
+echo "\c template1; \\COPY users FROM '$(pwd)/transformed-data.csv' DELIMITERS ',' CSV;" | psql --username=asmaahamami --host=localhost template1
 echo "Daten erfolgreich in die Datenbank geladen." 
