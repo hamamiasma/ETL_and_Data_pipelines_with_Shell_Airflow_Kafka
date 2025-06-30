@@ -8,11 +8,12 @@
 # 4. Validiert die erfolgreiche Datenübertragung
 
 # Farbcodes für Output
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+RED='\033[0;31m'   # أحمر للأخطاء
+GREEN='\033[0;32m' # أخضر للنجاح
+YELLOW='\033[1;33m'# أصفر للتحذيرات
+BLUE='\033[0;34m'  # أزرق للمعلومات
+NC='\033[0m'       # إعادة اللون للوضع الافتراضي
+
 
 # Konfiguration
 DB_HOST="${DB_HOST:-localhost}"
@@ -25,6 +26,8 @@ EXTRACTED_FILE="extracted-data.txt"
 CSV_FILE="transformed-data.csv"
 
 # Logging Funktion
+#تستقبل مستوى الرسالة (INFO, WARN, ERROR, SUCCESS) ونصّ الرسالة.
+# تضيف طابعًا زمنيًّا وتلوّن السطر وفق المستوى
 log() {
     local level=$1
     shift
@@ -48,6 +51,7 @@ log() {
 }
 
 # Fehlerbehandlung
+# سجّل الخطأ، تستدعي ‎cleanup‎، ثم تخرج من السكربت مع كود ‏1‏.
 error_exit() {
     log "ERROR" "$1"
     cleanup
@@ -55,6 +59,8 @@ error_exit() {
 }
 
 # Cleanup Funktion
+# تُنفَّذ عند انتهاء السكربت أو عند وقوع خطأ.
+# مهيّأة لحذف الملفات المؤقتة (السطر مع ‎rm‎ معلَّق حاليًا).
 cleanup() {
     log "INFO" "Cleanup wird durchgeführt..."
     # Temporäre Dateien löschen wenn gewünscht
@@ -62,6 +68,8 @@ cleanup() {
 }
 
 # PostgreSQL Verbindung testen
+# إذا فشل الاتصال عبر ‎TCP‎، يحاول مجددًا عبر المقبس المحلي (من دون ‎-h‎).
+# يعيد ‎0‎ عند النجاح وإلا يُرجِع خطأ.
 test_db_connection() {
     log "INFO" "Teste Datenbankverbindung..."
     
