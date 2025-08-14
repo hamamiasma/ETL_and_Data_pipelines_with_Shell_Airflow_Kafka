@@ -29,14 +29,14 @@ CSV_FILE="transformed-data.csv"
 #تستقبل مستوى الرسالة (INFO, WARN, ERROR, SUCCESS) ونصّ الرسالة.
 # تضيف طابعًا زمنيًّا وتلوّن السطر وفق المستوى
 log() {
-    local level=$1
-    shift
-    local message="$@"
-    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    local level=$1 # أول وسيط (argument) هو مستوى الرسالة (مثل INFO أو ERROR).
+    shift   # حذف أول وسيط من قائمة الوسائط، بحيث يصبح الباقي هو نص الرسالة.
+    local message="$@"  # خزن باقي الوسائط (الرسالة) في متغير message.
+    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')     # يحصل على التاريخ والوقت الحاليين بصيغة سنة-شهر-يوم ساعة:دقيقة:ثانية.
     
-    case $level in
+    case $level in   # كواد ألوان
         "INFO")
-            echo -e "${BLUE}[INFO]${NC} ${timestamp} - $message"
+            echo -e "${BLUE}[INFO]${NC} ${timestamp} - $message"  # ${NC}: "No Color" لإعادة اللون الطبيعي بعد الطباعة.
             ;;
         "WARN")
             echo -e "${YELLOW}[WARN]${NC} ${timestamp} - $message"
